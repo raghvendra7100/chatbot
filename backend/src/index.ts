@@ -6,4 +6,4 @@
  connectToDatabase().then(()=>{
     app.listen(3000 , ()=> console.log("server open"));
  })
- 
+ .catch((err)=> console.log(err));
