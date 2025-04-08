@@ -8,6 +8,6 @@
     "allowSyntheticDefaultImports": true       
                                /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
   },
-  "include": ["src/**/*.ts" , "src/index.ts"]
+  "include": ["src/**/*.ts" , "src/index.ts", "src/app.ts"]
 }
                                 
