@@ -2,8 +2,10 @@ import userModel from "../models/userModel";
 import User from "../models/userModel";
 import bcrypt from "bcrypt";
 
+import { signUpSchema } from "../utils/validators";
 
 const saltRounds = 5;
+//api/v1/user
 export const getAllUsers = async(req, res)=>{
     try{
         const users= await User.find({});
@@ -20,9 +22,19 @@ export const getAllUsers = async(req, res)=>{
     }
 }
 
+//api/v1/user/signup
 export const signup = async(req, res )=>{
    
     try{
+
+        const result = signUpSchema.safeParse(req.body);
+
+        if(!result.success){
+            const error= result.error.format();
+            return res.status(400).json({message: "Validation Error", error})
+        }
+
+
         const{name , email ,password} = req.body;
         const hashedPassword = await bcrypt.hash(password , saltRounds);
         
